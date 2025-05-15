@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-cicd
+  template:
+    metadata:
+      labels:
+        app: hello-world-cicd
+    spec:
+      containers:
+        - name: hello-world-cicd
+          image: docker.io/stevyo/hello-world-cicd:latest
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: dockerhub-secret
